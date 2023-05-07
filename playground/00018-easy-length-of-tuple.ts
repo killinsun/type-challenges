@@ -22,7 +22,13 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type Length<T> = any
+
+// T.length のようにはできないので、インデックスアクセス型を使う
+// https://typescriptbook.jp/reference/type-reuse/indexed-access-types
+// その際、T は配列の部分型でなければならないので、 extends readonly any[] を使う
+// readonly をつけるのは、tesla と spaceX が as const で宣言されているため、 any[] だと満たせないから。
+
+type Length<T extends readonly any[]> = T['length']
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'

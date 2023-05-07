@@ -22,7 +22,8 @@
 
 /* _____________ ここにコードを記入 _____________ */
 
-type First<T extends any[]> = any
+// Conditional Typeで 空配列の場合は never を返すようにする
+type First<T extends any[]> = T extends [] ? never : T[0]
 
 /* _____________ テストケース _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
